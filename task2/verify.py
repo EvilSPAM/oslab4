@@ -74,10 +74,11 @@ s = Or(
 # add BMC formulae
 solver.add(And(p, Not(s)))
 
-
-if solver.check() == unsat:
+c = solver.check()
+if c == unsat:
   print "Program is correct!"
+elif c == unknown:
+  print "Unable to check program!"
 else:
   print solver.model()
-  print "Program is incorrect!"
-
+  print "Program is incorrect!" 
